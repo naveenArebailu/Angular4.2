@@ -1,0 +1,63 @@
+
+<p>{{ title | titlecase }}</p>
+<div class="form-group">
+  <div class="col-sm-10">
+    <form [formGroup]="registerForm" (ngSubmit)="submit(registerForm.value)" novalidate autocomplete="off">
+      <div class="form-group">
+        <input type="text" name="name" class="form-control" formControlName="name" [(ngModel)]="userDetail.name" required>
+
+      </div>
+      <div class="form-group">
+        <input type="text" name="lastName" class="form-control" formControlName="lastName" [(ngModel)]="userDetail.lastName" required>
+
+      </div>
+      <div class="form-group">
+        <input type="text" name="age" class="form-control" formControlName="age" [(ngModel)]="userDetail.age" required>
+
+      </div>
+        <div class="form-group">
+        <input type="email" name="email" class="form-control" formControlName="age" [(ngModel)]="userDetail.email" required email>
+
+      </div>
+      <div class="form-group">
+        <select class="txt-box" name="gender" formControlName="genderType" [(ngModel)]="userDetail.genderType" class="form-control"
+          required>
+          <option [value]="userDetail.genderType" [disabled]="true">Select Option </option>
+            <option *ngFor="let gender of genderArray" [ngValue]="gender.value">
+            {{gender.value}}
+            </option>
+      </select>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+    <hr/>
+    <div *ngIf="arrayList.length > 0">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>LastName</th>
+              <th>Age</th>
+              <th>Email</th>
+              <th>Gender</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of arrayList">
+              <td>{{item.name}}</td>
+              <td>{{item.lastName}}</td>
+              <td>{{item.age}}</td>
+              <td>{{item.email}}</td>
+              <td>{{item.gender}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
